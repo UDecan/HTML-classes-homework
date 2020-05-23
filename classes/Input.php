@@ -13,52 +13,12 @@ class Input implements ViewInterface
     /**
      * @var string
      */
-    private $accept;
-
-    /**
-     * @var string
-     */
     private $accesskey;
-
-    /**
-     * @var string[]
-     */
-    static protected $alignValues = ['bottom', 'left', 'middle','right', 'top',''];
-
-    /**
-     * @var string
-     */
-    private $align;
-
-    /**
-     * @var string
-     */
-    private $alt;
-
-    /**
-     * @var string[]
-     */
-    static protected $autocompleteValues = ['on', 'off',''];
-
-    /**
-     * @var string
-     */
-    private $autocomplete;
 
     /**
      * @var bool
      */
     private $autofocus;
-
-    /**
-     * @var int
-     */
-    private $border;
-
-    /**
-     * @var bool
-     */
-    private $checked;
 
     /**
      * @var bool
@@ -113,45 +73,7 @@ class Input implements ViewInterface
     /**
      * @var string
      */
-    private $list;
-
-    /**
-     * @var int
-     */
-    private $max;
-
-    /**
-     * @var int
-     */
-    private $maxlength;
-
-    /**
-     * @var int
-     */
-    private $min;
-
-    /**
-     * @var bool
-     */
-    private $multiple;
-
-    /**
-     * @var string
-     */
     private $name;
-
-    /**
-     * @var string[]
-     */
-    static protected $patternValues = ['\d [0-9]', '\D [^0-9]', '\s', '[A-Z]',
-        '[A-Za-z]', '[А-Яа-яЁё]', '[A-Za-zА-Яа-яЁё]', '[0-9]{3}', '[A-Za-z]{6,}', '[0-9]{,3}',
-        '[0-9]{5,10}', '^[a-zA-Z]+$', '^[А-Яа-яЁё\s]+$', '^[ 0-9]+$', '[0-9]{6}', '\d+(,\d{2})?',
-        '\d+(\.\d{2})?', '\d{1,3}\.\d{1,3}\.\d{1,3}\.\d{1,3}', ''];
-
-    /**
-     * @var string
-     */
-    private $pattern;
 
     /**
      * @var string
@@ -167,16 +89,6 @@ class Input implements ViewInterface
      * @var bool
      */
     private $required;
-
-    /**
-     * @var int
-     */
-    private $size;
-
-    /**
-     * @var string
-     */
-    private $src;
 
     /**
      * @var float
@@ -231,8 +143,6 @@ class Input implements ViewInterface
      * @param string $placeholder
      * @param bool $readonly
      * @param bool $required
-     * @param int $size
-     * @param string $src
      * @param double $step
      * @param int $tabindex
      * @param string $type
@@ -245,13 +155,9 @@ class Input implements ViewInterface
                                 string $name = null, string $pattern = null, string $placeholder = null, bool $readonly = null, bool $required = null,
                                 int $size = 20, string $src = null, float $step = 1, int $tabindex = null, string $type = 'text', string $value = null)
     {
-        $this->accept = $accept;
         $this->accesskey = $accesskey;
-        $this->align = $align;
-        $this->alt = $alt;
         $this->autocomplete = $autocomplete;
         $this->autofocus = $autofocus;
-        $this->border = $border;
         $this->checked = $checked;
         $this->disabled = $disabled;
         $this->form = $form;
@@ -260,18 +166,10 @@ class Input implements ViewInterface
         $this->formmethod = $formmethod;
         $this->formnovalidate = $formnovalidate;
         $this->formtarget = $formtarget;
-        $this->list = $list;
-        $this->max = $max;
-        $this->maxlength = $maxlength;
-        $this->min = $min;
-        $this->multiple = $multiple;
         $this->name = $name;
-        $this->pattern = $pattern;
         $this->placeholder = $placeholder;
         $this->readonly = $readonly;
         $this->required = $required;
-        $this->size = $size;
-        $this->src = $src;
         $this->step = $step;
         $this->tabindex = $tabindex;
         $this->type = $type;
@@ -287,13 +185,9 @@ class Input implements ViewInterface
     {
         $getParam = new getParamForGetView();
 
-        $accept = $getParam->getParam($this->accept,'accept');
         $accesskey = $getParam->getParam($this->accesskey,'accesskey');
-        $align = $getParam->getParam($this->align,'align');
-        $alt = $getParam->getParam($this->alt,'alt');
         $autocomplete = $getParam->getParam($this->autocomplete,'autocomplete');
         $autofocus = $getParam->getParam($this->autofocus,'autofocus');
-        $border = $getParam->getParam($this->border,'border');
         $checked = $getParam->getParam($this->checked,'checked');
         $disabled = $getParam->getParam($this->disabled,'disabled');
         $form = $getParam->getParam($this->form,'form');
@@ -302,45 +196,19 @@ class Input implements ViewInterface
         $formmethod = $getParam->getParam($this->formmethod,'formmethod');
         $formnovalidate = $getParam->getParam($this->formnovalidate,'formnovalidate');
         $formtarget = $getParam->getParam($this->formtarget,'formtarget');
-        $list = $getParam->getParam($this->list,'list');
-        $max = $getParam->getParam($this->max,'max');
-        $maxlength = $getParam->getParam($this->maxlength,'maxlength');
-        $min = $getParam->getParam($this->min,'min');
-        $multiple = $getParam->getParam($this->multiple,'multiple');
         $name = $getParam->getParam($this->name,'name');
-        $pattern = $getParam->getParam($this->pattern,'pattern');
         $placeholder = $getParam->getParam($this->placeholder,'placeholder');
         $readonly = $getParam->getParam($this->readonly,'readonly');
         $required = $getParam->getParam($this->required,'required');
-        $size = $getParam->getParam($this->size,'size');
-        $src = $getParam->getParam($this->src,'src');
         $step = $getParam->getParam($this->step,'step');
         $tabindex = $getParam->getParam($this->tabindex,'tabindex');
         $type = $getParam->getParam($this->type,'type');
         $value = $getParam->getParam($this->value,'value');
 
-        return \sprintf('<%s %s %s %s %s %s %s %s %s %s %s %s %s %s %s %s %s %s %s %s %s %s %s %s %s %s %s %s %s %s %s>%s</%s>',
-            static::TAG_NAME, $accept,$accesskey,$align,$alt,$autocomplete,$autofocus,$border,$checked,$disabled,
-            $form,$formaction,$formenctype,$formmethod,$formnovalidate,$formtarget,$list,$max,$maxlength,$min, $multiple,
-            $name,$pattern,$placeholder,$readonly,$required,$size,$src,$step,$tabindex,$type,$value, static::TAG_NAME);
-    }
-
-    /**
-     * @return string
-     */
-    public function getAccept(): string
-    {
-        return $this->accept;
-    }
-
-    /**
-     * @param string $accept
-     * @return Input
-     */
-    public function setAccept(string $accept): Input
-    {
-        $this->accept = $accept;
-        return $this;
+        return \sprintf('<%s %s %s %s %s %s %s %s %s %s %s %s %s %s %s %s %s %s %s>%s</%s>',
+            static::TAG_NAME,$accesskey,$autocomplete,$autofocus,$checked,$disabled,
+            $form,$formaction,$formenctype,$formmethod,$formnovalidate,$formtarget,
+            $name,$placeholder,$readonly,$required,$step,$tabindex,$type,$value, static::TAG_NAME);
     }
 
     /**
@@ -362,66 +230,6 @@ class Input implements ViewInterface
     }
 
     /**
-     * @return string
-     */
-    public function getAlign(): string
-    {
-        return $this->align;
-    }
-
-    /**
-     * @param string $align
-     * @return Input
-     */
-    public function setAlign(string $align): Input
-    {
-        if (!in_array($align, static::$alignValues)) {
-            throw new \RuntimeException('Значение вне диапазона');
-        }
-        $this->align = $align;
-        return $this;
-    }
-
-    /**
-     * @return string
-     */
-    public function getAlt(): string
-    {
-        return $this->alt;
-    }
-
-    /**
-     * @param string $alt
-     * @return Input
-     */
-    public function setAlt(string $alt): Input
-    {
-        $this->alt = $alt;
-        return $this;
-    }
-
-    /**
-     * @return string
-     */
-    public function getAutocomplete(): string
-    {
-        return $this->autocomplete;
-    }
-
-    /**
-     * @param string $autocomplete
-     * @return Input
-     */
-    public function setAutocomplete(string $autocomplete): Input
-    {
-        if (!in_array($autocomplete, static::$autocompleteValues)) {
-            throw new \RuntimeException('Значение вне диапазона');
-        }
-        $this->autocomplete = $autocomplete;
-        return $this;
-    }
-
-    /**
      * @return bool
      */
     public function isAutofocus(): bool
@@ -436,42 +244,6 @@ class Input implements ViewInterface
     public function setAutofocus(bool $autofocus): Input
     {
         $this->autofocus = $autofocus;
-        return $this;
-    }
-
-    /**
-     * @return int
-     */
-    public function getBorder(): int
-    {
-        return $this->border;
-    }
-
-    /**
-     * @param int $border
-     * @return Input
-     */
-    public function setBorder(int $border): Input
-    {
-        $this->border = $border;
-        return $this;
-    }
-
-    /**
-     * @return bool
-     */
-    public function isChecked(): bool
-    {
-        return $this->checked;
-    }
-
-    /**
-     * @param bool $checked
-     * @return Input
-     */
-    public function setChecked(bool $checked): Input
-    {
-        $this->checked = $checked;
         return $this;
     }
 
@@ -610,96 +382,6 @@ class Input implements ViewInterface
     /**
      * @return string
      */
-    public function getList(): string
-    {
-        return $this->list;
-    }
-
-    /**
-     * @param string $list
-     * @return Input
-     */
-    public function setList(string $list): Input
-    {
-        $this->list = $list;
-        return $this;
-    }
-
-    /**
-     * @return int
-     */
-    public function getMax(): int
-    {
-        return $this->max;
-    }
-
-    /**
-     * @param int $max
-     * @return Input
-     */
-    public function setMax(int $max): Input
-    {
-        $this->max = $max;
-        return $this;
-    }
-
-    /**
-     * @return int
-     */
-    public function getMaxlength(): int
-    {
-        return $this->maxlength;
-    }
-
-    /**
-     * @param int $maxlength
-     * @return Input
-     */
-    public function setMaxlength(int $maxlength): Input
-    {
-        $this->maxlength = $maxlength;
-        return $this;
-    }
-
-    /**
-     * @return int
-     */
-    public function getMin(): int
-    {
-        return $this->min;
-    }
-
-    /**
-     * @param int $min
-     * @return Input
-     */
-    public function setMin(int $min): Input
-    {
-        $this->min = $min;
-        return $this;
-    }
-
-    /**
-     * @return bool
-     */
-    public function isMultiple(): bool
-    {
-        return $this->multiple;
-    }
-
-    /**
-     * @param bool $multiple
-     * @return Input
-     */
-    public function setMultiple(bool $multiple): Input
-    {
-        $this->multiple = $multiple;
-        return $this;
-    }
-
-    /**
-     * @return string
-     */
     public function getName(): string
     {
         return $this->name;
@@ -712,27 +394,6 @@ class Input implements ViewInterface
     public function setName(string $name): Input
     {
         $this->name = $name;
-        return $this;
-    }
-
-    /**
-     * @return string
-     */
-    public function getPattern(): string
-    {
-        return $this->pattern;
-    }
-
-    /**
-     * @param string $pattern
-     * @return Input
-     */
-    public function setPattern(string $pattern): Input
-    {
-        if (!in_array($pattern, static::$patternValues)) {
-            throw new \RuntimeException('Значение вне диапазона');
-        }
-        $this->pattern = $pattern;
         return $this;
     }
 
@@ -787,42 +448,6 @@ class Input implements ViewInterface
     public function setRequired(bool $required): Input
     {
         $this->required = $required;
-        return $this;
-    }
-
-    /**
-     * @return int
-     */
-    public function getSize(): int
-    {
-        return $this->size;
-    }
-
-    /**
-     * @param int $size
-     * @return Input
-     */
-    public function setSize(int $size): Input
-    {
-        $this->size = $size;
-        return $this;
-    }
-
-    /**
-     * @return string
-     */
-    public function getSrc(): string
-    {
-        return $this->src;
-    }
-
-    /**
-     * @param string $src
-     * @return Input
-     */
-    public function setSrc(string $src): Input
-    {
-        $this->src = $src;
         return $this;
     }
 
