@@ -59,16 +59,6 @@ class InputText extends Input implements ViewInterface
     private $size;
 
     /**
-     * @var string
-     */
-    private $type;
-
-    /**
-     * @var string
-     */
-    private $value;
-
-    /**
      * Input constructor.
      * @param string $autocomplete
      * @param string $list
@@ -77,11 +67,9 @@ class InputText extends Input implements ViewInterface
      * @param int $min
      * @param string $pattern
      * @param int $size
-     * @param string $type
-     * @param string $value
      */
     public function __construct(string $autocomplete = null, string $list = null, int $max = null, int $maxlength = (int)true,
-                                int $min = null, string $pattern = null, int $size = 20, string $type = 'text', string $value = null)
+                                int $min = null, string $pattern = null, int $size = 20)
     {
         parent::__construct();
         $this->autocomplete = $autocomplete;
@@ -91,8 +79,6 @@ class InputText extends Input implements ViewInterface
         $this->min = $min;
         $this->pattern = $pattern;
         $this->size = $size;
-        $this->type = $type;
-        $this->value = $value;
     }
 
 
@@ -111,12 +97,10 @@ class InputText extends Input implements ViewInterface
         $min = $getParam->getParam($this->min,'min');
         $pattern = $getParam->getParam($this->pattern,'pattern');
         $size = $getParam->getParam($this->size,'size');
-        $type = $getParam->getParam($this->type,'type');
-        $value = $getParam->getParam($this->value,'value');
 
-        return \sprintf('<%s %s %s %s %s %s %s %s %s>%s</%s>',
+        return \sprintf('<%s %s %s %s %s %s %s>%s</%s>',
             static::TAG_NAME,$autocomplete,$list,$max,$maxlength,$min,
-            $pattern,$size,$type,$value, static::TAG_NAME);
+            $pattern,$size, static::TAG_NAME);
     }
 
     /**
@@ -248,45 +232,6 @@ class InputText extends Input implements ViewInterface
     public function setSize(int $size): Input
     {
         $this->size = $size;
-        return $this;
-    }
-
-    /**
-     * @return string
-     */
-    public function getType(): string
-    {
-        return $this->type;
-    }
-
-    /**
-     * @param string $type
-     * @return Input
-     */
-    public function setType(string $type): Input
-    {
-        if (!in_array($type, static::$typeValues)) {
-            throw new \RuntimeException('Значение вне диапазона');
-        }
-        $this->type = $type;
-        return $this;
-    }
-
-    /**
-     * @return string
-     */
-    public function getValue(): string
-    {
-        return $this->value;
-    }
-
-    /**
-     * @param string $value
-     * @return Input
-     */
-    public function setValue(string $value): Input
-    {
-        $this->value = $value;
         return $this;
     }
 }
